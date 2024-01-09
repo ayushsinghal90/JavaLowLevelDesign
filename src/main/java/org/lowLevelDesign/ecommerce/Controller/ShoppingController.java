@@ -8,11 +8,24 @@ import org.lowLevelDesign.ecommerce.models.Order;
 import org.lowLevelDesign.ecommerce.models.Product;
 import org.lowLevelDesign.ecommerce.models.cart.ShoppingCart;
 
+/**
+ * Controller class for handling shopping-related operations.
+ *
+ * @author ayushsinghal90
+ */
 public class ShoppingController {
-  final ShoppingService shoppingService;
-  final OrderService orderService;
-  final ProductService productService;
 
+  private final ShoppingService shoppingService;
+  private final OrderService orderService;
+  private final ProductService productService;
+
+  /**
+   * Constructor for initializing the controller with necessary services.
+   *
+   * @param shoppingService The shopping service.
+   * @param orderService The order service.
+   * @param productService The product service.
+   */
   public ShoppingController(
       ShoppingService shoppingService, OrderService orderService, ProductService productService) {
     this.shoppingService = shoppingService;
@@ -20,33 +33,59 @@ public class ShoppingController {
     this.productService = productService;
   }
 
+  /**
+   * Retrieves the shopping cart for a user.
+   *
+   * @param username The username of the user.
+   * @return The user's shopping cart.
+   * @throws Exception If there's an issue retrieving the shopping cart.
+   */
   public ShoppingCart getCart(final String username) throws Exception {
     return shoppingService.getCart(username);
   }
 
   /**
-   * If present quantity will be added to existing. Ex: Item with 10 quantity already present in
-   * card will get updated to 20 if a request for same product with 10 quantity is asked. Same will
-   * happen with price.
+   * Adds a product to the user's shopping cart.
    *
-   * @param username
-   * @param productId
-   * @param quantity
-   * @return
-   * @throws Exception
+   * @param username The username of the user.
+   * @param productId The ID of the product to be added.
+   * @param quantity The quantity of the product to be added.
+   * @return The updated shopping cart.
+   * @throws Exception If there's an issue adding the product to the cart.
    */
   public ShoppingCart addToCart(String username, String productId, int quantity) throws Exception {
     return shoppingService.addToCart(username, productId, quantity);
   }
 
+  /**
+   * Retrieves the order history for a user.
+   *
+   * @param username The username of the user.
+   * @return The order history for the user.
+   * @throws Exception If there's an issue retrieving the order history.
+   */
   public List<Order> getOrderHistory(final String username) throws Exception {
     return orderService.getOrderHistory(username);
   }
 
+  /**
+   * Retrieves product information based on the product ID.
+   *
+   * @param productId The ID of the product.
+   * @return The product information.
+   * @throws Exception If there's an issue retrieving the product.
+   */
   public Product getProduct(final String productId) throws Exception {
     return productService.getProduct(productId);
   }
 
+  /**
+   * Handles the checkout process for a user's shopping cart.
+   *
+   * @param username The username of the user.
+   * @return The created order after successful checkout.
+   * @throws Exception If there's an issue during the checkout process.
+   */
   public Order checkout(final String username) throws Exception {
     ShoppingCart shoppingCart = getCart(username);
     if (shoppingService.validateCartItems(shoppingCart)) {

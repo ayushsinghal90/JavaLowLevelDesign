@@ -12,17 +12,21 @@ import org.lowLevelDesign.ecommerce.repository.ProductRepository;
 import org.lowLevelDesign.ecommerce.repository.ShoppingCartRepository;
 import org.lowLevelDesign.ecommerce.repository.UserRepository;
 
-/** The main application class responsible for initializing controllers and services. */
-public final class Application {
+/**
+ * The main application class responsible for initializing controllers and services.
+ *
+ * @author ayushsinghal90
+ */
+public final class EcommerceApplication {
 
   // Singleton instance
-  public static final Application application = new Application();
+  public static final EcommerceApplication ECOMMERCE_APPLICATION = new EcommerceApplication();
   // Controllers
   public UserController userController;
   public ShoppingController shoppingController;
 
   /** Private constructor to enforce singleton pattern and initialize components. */
-  private Application() {
+  private EcommerceApplication() {
     // Initialize repositories
     UserRepository userRepository = new UserRepository();
     OrderRepository orderRepository = new OrderRepository();

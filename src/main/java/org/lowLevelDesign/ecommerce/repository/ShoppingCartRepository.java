@@ -2,6 +2,7 @@ package org.lowLevelDesign.ecommerce.repository;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import org.lowLevelDesign.ecommerce.models.cart.ShoppingCart;
 
@@ -27,13 +28,11 @@ public class ShoppingCartRepository {
       throw new Exception("Username is null. Cannot retrieve shopping cart.");
     }
 
-    ShoppingCart shoppingCart = userCartMap.get(username);
-
-    if (shoppingCart == null) {
-      throw new Exception(String.format("Shopping cart does not exist for username: %s", username));
-    }
-
-    return shoppingCart;
+    return Optional.of(userCartMap.get(username))
+        .orElseThrow(
+            () ->
+                new Exception(
+                    String.format("Shopping cart does not exist for username: %s", username)));
   }
 
   /**

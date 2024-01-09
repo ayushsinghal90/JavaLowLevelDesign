@@ -11,7 +11,6 @@ import org.lowLevelDesign.ecommerce.models.enums.PaymentStatus;
  * @author ayushsinghal90
  */
 public class PaymentService {
-
   private static final Logger LOG = LogManager.getLogger(PaymentService.class);
 
   /**
