@@ -1,17 +1,21 @@
 package org.lowLevelDesign.ecommerce.Services;
 
 import lombok.AllArgsConstructor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.lowLevelDesign.ecommerce.exception.InsufficientQuantityException;
 import org.lowLevelDesign.ecommerce.exception.ProductNotFoundException;
 import org.lowLevelDesign.ecommerce.models.Product;
 import org.lowLevelDesign.ecommerce.repository.ProductRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-/** Service class for managing products. */
+/**
+ * Service class for managing products.
+ *
+ * @author ayushsinghal90
+ */
 @AllArgsConstructor
 public class ProductService {
-  private static final Logger LOG = LoggerFactory.getLogger(ProductService.class);
+  private static final Logger LOG = LogManager.getLogger(ProductService.class);
   private final ProductRepository productRepository;
 
   /**

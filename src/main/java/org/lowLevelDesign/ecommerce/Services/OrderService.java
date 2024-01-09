@@ -4,8 +4,9 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 import lombok.AllArgsConstructor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.lowLevelDesign.ecommerce.models.Order;
 import org.lowLevelDesign.ecommerce.models.User;
 import org.lowLevelDesign.ecommerce.models.cart.Item;
@@ -14,15 +15,15 @@ import org.lowLevelDesign.ecommerce.models.enums.OrderStatus;
 import org.lowLevelDesign.ecommerce.models.enums.PaymentStatus;
 import org.lowLevelDesign.ecommerce.repository.OrderRepository;
 
-/** Service class for handling orders.
+/**
+ * Service class for handling orders.
  *
  * @author ayushsinghal90
  */
 @AllArgsConstructor
 public class OrderService {
 
-  // Logger for logging
-  private static final Logger LOG = Logger.getLogger(OrderService.class.getName());
+  private static final Logger LOG = LogManager.getLogger(OrderService.class);
 
   // Dependencies
   private final OrderRepository orderRepository;
@@ -77,7 +78,6 @@ public class OrderService {
     HashMap<String, Item> items = shoppingCart.getItems();
     double totalCost = calculateTotalCost(items);
 
-    // Create a new order
     Order order =
         new Order(
             shoppingCart.getUsername(),
@@ -86,10 +86,7 @@ public class OrderService {
             OrderStatus.PENDING,
             PaymentStatus.PENDING,
             LocalDate.now());
-
-    // Create or update the order in the repository
     orderRepository.createOrUpdateOrder(order);
-
     return order;
   }
 
@@ -102,11 +99,9 @@ public class OrderService {
   private double calculateTotalCost(HashMap<String, Item> items) {
     double totalCost = 0.0;
 
-    // Calculate the total cost of items
     for (Item item : items.values()) {
       totalCost += item.getPrice();
     }
-
     return totalCost;
   }
 }

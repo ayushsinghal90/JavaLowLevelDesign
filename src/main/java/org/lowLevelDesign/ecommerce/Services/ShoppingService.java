@@ -3,20 +3,22 @@ package org.lowLevelDesign.ecommerce.Services;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import java.util.logging.Logger;
 import lombok.AllArgsConstructor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.lowLevelDesign.ecommerce.models.Product;
 import org.lowLevelDesign.ecommerce.models.cart.Item;
 import org.lowLevelDesign.ecommerce.models.cart.ShoppingCart;
 import org.lowLevelDesign.ecommerce.repository.ShoppingCartRepository;
 
-/** Service class for shopping-related operations.
+/**
+ * Service class for shopping-related operations.
  *
  * @author ayushsinghal90
  */
 @AllArgsConstructor
 public class ShoppingService {
-  private static final Logger LOG = Logger.getLogger(ShoppingService.class.getName());
+  private static final Logger LOG = LogManager.getLogger(ShoppingService.class);
 
   private final ShoppingCartRepository shoppingCartRepository;
   private final ProductService productService;
