@@ -10,6 +10,8 @@ import org.lowLevelDesign.chess.Model.Pieces.Rook;
 
 /**
  * Represents a chess board with boxes containing chess pieces.
+ *
+ * @author ayushsinghal90
  */
 public class Board {
     /** 2D array representing the chess board's boxes. */
@@ -101,7 +103,7 @@ public class Board {
         System.out.println(" +----------------");
     }
 
-    public String getSymbol(Piece piece) {
+    private String getSymbol(Piece piece) {
         // Assuming you have methods like isWhite() and isKing() in the Piece class
         String color = piece.isWhite() ? "W" : "B";
 

@@ -5,11 +5,20 @@ import java.util.Scanner;
 import org.lowLevelDesign.chess.Model.Player;
 import org.lowLevelDesign.chess.Service.Game;
 
-public class Application {
+/**
+ * The main application class for a chess game demonstration.
+ *
+ * @author ayushsinghal90
+ */
+public class ChessApplication {
+
     private static Game chessGame;
     private static Player player1;
     private static Player player2;
 
+    /**
+     * Initializes players and the chess game, displaying the initial board.
+     */
     private static void initialize() {
         // Create players
         player1 = new Player(true); // White side
@@ -23,13 +32,24 @@ public class Application {
         chessGame.printBoard();
     }
 
+    /**
+     * The main entry point for the chess game application.
+     *
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
-        // Demo Play moves
+        // Initialize players and the chess game
+        initialize();
+
+        // Demo play moves
         try {
             demoChessGame();
+            displayBoard();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        // Start a simulated game based on user input
         Scanner sc = new Scanner(System.in);
         System.out.println("Should start game");
 
@@ -37,9 +57,13 @@ public class Application {
 
         if (start) {
             startSimulateGame();
+            displayBoard();
         }
     }
 
+    /**
+     * Simulates the chess game based on user input.
+     */
     private static void startSimulateGame() {
         Player currentPlayer = player1;
         int startX, endX, startY, endY;
@@ -77,6 +101,9 @@ public class Application {
         }
     }
 
+    /**
+     * Displays the current state of the chessboard and checks the game status.
+     */
     private static void displayBoard() {
         System.out.println("\nAfter Moves:");
         chessGame.printBoard();
@@ -89,7 +116,12 @@ public class Application {
         }
     }
 
-    public static void demoChessGame() throws Exception {
+    /**
+     * Simulates a demo chess game with predefined moves.
+     *
+     * @throws Exception If an error occurs during the moves.
+     */
+    private static void demoChessGame() throws Exception {
         chessGame.playerMove(player1, 6, 4, 4, 4); // Pawn for Player 1 moves
         chessGame.playerMove(player2, 1, 4, 3, 4); // Pawn for Player 2 moves
         chessGame.playerMove(player1, 6, 3, 4, 3); // Another pawn for Player 1 moves
