@@ -12,3 +12,4 @@ Please be sure to check out the [Wiki](https://github.com/ayushsinghal90/JavaLow
 
 - [Ecommerce like Amazon/Flipkart](src/main/java/org/lowLevelDesign/ecommerce)
 - [Parking Lot](src/main/java/org/lowLevelDesign/parkingLot)
+- [Chess](src/main/java/org/lowLevelDesign/chess)
